@@ -75,3 +75,41 @@ const revealObserver = new IntersectionObserver(revealCallback, {
 revealElements.forEach(el => {
     revealObserver.observe(el);
 });
+
+// Force Download Resume
+const downloadBtn = document.getElementById('download-btn');
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const pdfUrl = this.getAttribute('href');
+        const fileName = this.getAttribute('download') || 'resume.pdf';
+        
+        fetch(pdfUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            })
+            .catch(() => {
+                // Fallback if fetch fails (e.g., due to CORS on file:// protocol)
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = pdfUrl;
+                a.download = fileName;
+                a.target = '_blank';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+    });
+}
