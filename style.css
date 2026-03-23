@@ -192,7 +192,10 @@ ul {
 }
 
 .navbar.scrolled {
-    background: transparent;
+    background: rgba(10, 15, 28, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
     padding: 0.8rem 0;
 }
 
