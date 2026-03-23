@@ -77,9 +77,10 @@ revealElements.forEach(el => {
 });
 
 // Force Download Resume
-const downloadBtn = document.getElementById('download-btn');
-if (downloadBtn) {
-    downloadBtn.addEventListener('click', function(e) {
+// Force Download Resume
+const downloadBtns = document.querySelectorAll('a[download]');
+downloadBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
         e.preventDefault();
         const pdfUrl = this.getAttribute('href');
         const fileName = this.getAttribute('download') || 'resume.pdf';
@@ -112,4 +113,4 @@ if (downloadBtn) {
                 document.body.removeChild(a);
             });
     });
-}
+});
