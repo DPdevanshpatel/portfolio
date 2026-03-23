@@ -561,6 +561,31 @@ ul {
     position: relative;
     padding-left: 50px;
     margin-bottom: 3rem;
+    cursor: pointer;
+}
+
+.experience-hover-img {
+    position: absolute;
+    bottom: 90%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.9);
+    width: 450px;
+    max-width: 90vw;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    pointer-events: none;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item:hover .experience-hover-img {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .timeline-dot {
@@ -630,6 +655,37 @@ ul {
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1.5rem;
+}
+
+/* Milestone Image Hover Styles */
+.milestone, .edu-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.milestone-hover-img {
+    position: absolute;
+    bottom: 90%; /* Pop up above the text */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.9);
+    width: 400px;
+    max-width: 90vw;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    pointer-events: none; /* Prevents flickering when hovering over image */
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.milestone:hover .milestone-hover-img,
+.edu-item:hover .milestone-hover-img {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .milestone h4, .edu-item h4 {
